@@ -1,0 +1,22 @@
+<!-- all search results will be presenten within a panel (note ng-repeat): -->
+<div class='panel panel-default' ng-repeat='result in results'>
+    <!-- ng-bind-html allows to inject html as contents of {{ }} is escaped otherwise;
+        note ng-if as well - this will show only when "Text" field is present.
+    -->
+    <div class='panel-body' ng-if='result.Text' ng-bind-html='result.Result'></div>
+    <!-- this will be shown only when a result has Name fiel.
+        (that happens to be for topics only)
+    -->
+    <div class='panel-heading' ng-if='result.Name'>
+        <span class='glyphicon glyphicon-chevron-right'></span>
+        <span>{{ result.Name }}</span>
+    </div>
+    <div class='panel-body' ng-if='result.Name'>
+        <p ng-repeat='topic in result.Topics'>
+        <!-- note the "star" modified - it'll be defined in javascript files.
+            see app/controllers.js.
+        -->
+            <span ng-bind-html='topic.Result|star'></span>
+        </p>
+    </div>
+</div>

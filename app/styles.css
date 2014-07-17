@@ -1,0 +1,85 @@
+/*
+ * HTML body:
+ * (not AngularJS specific)
+ */
+body {
+    margin: 1ex auto;
+    background-attachment: fixed;
+    background-image: url(../img/duck.jpg);
+    background-repeat: no-repeat;
+    background-position: center top;
+}
+
+/*
+ * Easter eggs:
+ * (not AngularJS specific)
+ */
+.do_a_roll { transform: rotate(360deg); transition: all 3s ease-in-out; }
+.do_a_bounce { animation: bounce 0.5s 3; -webkit-animation: bounce 0.5s 3; }
+
+/*
+ * Results:
+ */
+.panel { transition: all 0.3s ease-in-out; box-shadow: 0 8px 6px -6px black; }
+.panel:hover { transform: scale(1.02); box-shadow: 0 8px 10px -6px black; background-color: aliceblue; }
+.panel a { margin-right: 1ex; }
+.panel-heading span:not(.glyphicon) { font-weight: bold; animation: heading 2s ease infinite; -webkit-animation: heading 2s ease infinite; }
+
+/**
+ * Actual AngularJS definition:
+ * - there are two events defined: enter and leave (adding to DOM and removing from DOM)
+ * - ng-enter is an initial state and ng-enter-active is the final state
+ * - the same applies to ng-leave*
+ * - as we are animating results here (.panel) they already have transition defined: transition: all 0.3s ease-in-out;
+ * - and this is how they'll transform from * to *-active.
+ * Note there's no need to use ng-animate in your html any more. All you need to do is to make your app
+ * dependant from ngAnimate module and these events will be automatically added:
+ */
+.ng-enter { opacity: 0; }
+.ng-enter-active { opacity: 1; }
+.ng-leave { opacity: 1; }
+.ng-leave-active { opacity: 0; }
+
+/**
+ * Bouncy topics:
+ * (not AngularJS specific)
+ */
+@keyframes heading {
+    0% { margin-left: 0; }
+    5% { margin-left: 0; }
+    10% { margin-left: 0; }
+    15% { margin-left: 2ex; }
+    20% { margin-left: 0; }
+    25% { margin-left: 1ex; }
+    30% { margin-left: 0; }
+    35% { margin-left: 0.5ex; }
+    40% { margin-left: 0; }
+    100% { margin-left: 0; }
+}
+@-webkit-keyframes heading {
+    0% { margin-left: 0; }
+    5% { margin-left: 0; }
+    10% { margin-left: 0; }
+    15% { margin-left: 2ex; }
+    20% { margin-left: 0; }
+    25% { margin-left: 1ex; }
+    30% { margin-left: 0; }
+    35% { margin-left: 0.5ex; }
+    40% { margin-left: 0; }
+    100% { margin-left: 0; }
+}
+
+/**
+ * Easter egg:
+ */
+@keyframes bounce {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+@-webkit-keyframes bounce {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+

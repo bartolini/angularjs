@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang='en' ng-app='duckDuckGoSearch' ng-controller='SearchController'>
+<!-- The line above does two things:
+    - declares AngularJs module named "duckDuckGoSearch" as an app
+    - makes "SearchController" a controller of everything between <html> tags. -->
+    <head>
+        <meta charset='utf-8'>
+        <!-- This binds a variable of $scope object named "query" to be inserted in the title: -->
+        <title>Duck Duck Go: {{ query }}</title>
+        <!-- We need some CSS to make the page look nicer (we are using bootstrap here): -->
+        <link rel='stylesheet' href='inc/bootstrap-3.2.0-dist/css/bootstrap.min.css'>
+        <link rel='stylesheet' href='app/styles.css'>
+        <!-- We need to include all angular files as well
+            (please note that it has to be taken care of manually): -->
+        <script src='inc/angularjs/angular.min.js'></script>
+        <script src='inc/angularjs/angular-resource.min.js'></script>
+        <script src='inc/angularjs/angular-sanitize.min.js'></script>
+        <script src='inc/angularjs/angular-animate.min.js'></script>
+        <!-- And some more application specific javascript: -->
+        <script src='app/controllers.js'></script>
+        <script src='app/services.js'></script>
+        <script src='app/filters.js'></script>
+    </head>
+    <body ng-class='easter_egg_class'>
+        <!-- Now to the app itself: -->
+        <div class='container'>
+            <div class='row'>
+                <div class='col-md-3'>
+                    <div class='input-group'>
+                        <!-- Below will fire "reload_results" function defined within the $scope object of current controller
+                            (that is "SearchController") with "query" variable as a parameter from the same $scope as well:
+                        -->
+                        <form ng-submit='reload_results(query)'>
+                            <span class='input-group-btn'>
+                                <!--
+                                    We have only one input. By using "ng-model" we're binding it to the "query" variable of
+                                    the $scope object - so typing in will change title bar as well and on submit will
+                                    execute "reload_results" function.
+                                -->
+                                <input ng-model='query' type='text' class='form-control'>
+                                <button class='btn btn-default' type='submit'>Go!</button>
+                            </span>
+                        </form>
+                    </div>
+                </div>
+                <!-- This will include a partial view from the "results.html" file to present search results: -->
+                <div class='col-md-9' ng-include='"results.html"'></div>
+                <!-- Please note if you wan't to be 100% HTML5 compliant the ng tags should have "data" prefix,
+                    so instead of "ng-include" it'd be more correct to use "data-ng-inculde"; both ways will work though.
+                -->
+            </div>
+        </div>
+    </body>
+</html>
